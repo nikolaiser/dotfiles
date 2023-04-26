@@ -12,7 +12,7 @@ return {
         desc = "Metals commands",
       },
       {
-        "<leaser>mc",
+        "<leader>mc",
         function()
           require("metals").compile_cascade()
         end,
@@ -41,6 +41,14 @@ return {
           name = "RunOrTest",
           metals = {
             runType = "runOrTestFile",
+          },
+        },
+        {
+          type = "scala",
+          request = "launch",
+          name = "Test Target",
+          metals = {
+            runType = "testTarget",
           },
         },
       }
