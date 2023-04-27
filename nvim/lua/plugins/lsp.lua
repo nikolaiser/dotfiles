@@ -158,12 +158,31 @@ return {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
         config = true,
-      }
+      },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" }, {name = "crates", priority = 750 } }))
+      opts.sources =
+        cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" }, { name = "crates", priority = 750 } }))
+      opts.preselect = cmp.PreselectMode.None
+      local compare = require("cmp.config.compare")
+      opts.sorting = {
+        priority_weight = 2,
+        comparators = {
+          compare.offset, -- we still want offset to be higher to order after 3rd letter
+          compare.score, -- same as above
+          compare.sort_text, -- add higher precedence for sort_text, it must be above `kind`
+          compare.recently_used,
+          compare.kind,
+          compare.length,
+          compare.order,
+        },
+      }
+      opts.completion = {
+        -- completeopt = 'menu,menuone,noselect', <---- this is default value,
+        completeopt = "menu,menuone", -- remove noselect
+      }
     end,
   },
 
@@ -177,7 +196,7 @@ return {
         "flake8",
         "codelldb",
         "rust-analyzer",
-        "taplo"
+        "taplo",
       },
     },
   },
