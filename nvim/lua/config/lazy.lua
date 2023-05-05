@@ -8,6 +8,8 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 vim.lsp.set_log_level("trace")
 
+vim.o.termguicolors = true
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
