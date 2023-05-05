@@ -105,6 +105,13 @@ return {
         desc = "dap toggle",
       },
       {
+        "<leader>dq",
+        function()
+          require("dap").close()
+        end,
+        desc = "dap close",
+      },
+      {
         "<leader>dk",
         function()
           require("dap.ui.widgets").hover()
@@ -163,8 +170,12 @@ return {
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.sources =
-        cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" }, { name = "crates", priority = 750 } }))
+      opts.sources = cmp.config.sources(
+        vim.list_extend(
+          opts.sources,
+          { { name = "emoji" }, { name = "crates", priority = 750 }, { name = "cmp_tabnine" } }
+        )
+      )
       opts.preselect = cmp.PreselectMode.None
       local compare = require("cmp.config.compare")
       opts.sorting = {
