@@ -6,6 +6,7 @@ return {
       -- make sure mason installs the server
       servers = {
         rust_analyzer = {},
+        spectral_language_server = {},
       },
       setup = {
         rust_analyzer = function(_, opts)
@@ -208,6 +209,7 @@ return {
         "codelldb",
         "rust-analyzer",
         "taplo",
+        "spectral-language-server",
       },
     },
   },
