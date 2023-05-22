@@ -6,7 +6,8 @@ return {
       -- make sure mason installs the server
       servers = {
         rust_analyzer = {},
-        spectral_language_server = {},
+        spectral = {},
+        rnix = {},
       },
       setup = {
         rust_analyzer = function(_, opts)
@@ -210,6 +211,7 @@ return {
         "rust-analyzer",
         "taplo",
         "spectral-language-server",
+        "rnix-lsp",
       },
     },
   },
